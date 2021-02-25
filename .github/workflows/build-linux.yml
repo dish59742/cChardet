@@ -159,7 +159,7 @@ jobs:
           CIBW_BUILD: cp36-* cp37-* cp38-* cp39-* 
           CIBW_BEFORE_ALL: python -m pip install --upgrade pip
             && python -m pip install tox
-            && ls -a /opt/_internal/cpython-3.6.*/
+            && ls -a /opt/_internal/cpython-3.6.*/bin/
             && /opt/_internal/cpython-3.6.*/bin/tox -e py36
             && /opt/_internal/cpython-3.7.*/bin/tox -e py38
             && /opt/_internal/cpython-3.8.*/bin/tox -e py38
