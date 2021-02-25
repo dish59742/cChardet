@@ -152,7 +152,6 @@ jobs:
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
 
       - name: Build wheel
-        if: contains(github.ref, 'tags/')
         run: |
           python -m cibuildwheel --output-dir wheelhouse
         env:
