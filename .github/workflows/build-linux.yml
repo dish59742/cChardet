@@ -132,7 +132,7 @@ jobs:
             && python -m pip install -r requirements-dev.txt
             && python -m pip install tox
           CIBW_TEST_REQUIRES: tox
-          CIBW_TEST_COMMAND: python -m pip install -r requirements-dev.txt && tox
+          CIBW_TEST_COMMAND: ls && python -m pip install -r requirements-dev.txt && tox
 
       - uses: actions/upload-artifact@v1
         #if: contains(github.ref, 'tags/')
