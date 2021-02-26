@@ -131,6 +131,7 @@ jobs:
           CIBW_BEFORE_ALL: python -m pip install --upgrade pip
             && python -m pip install -r requirements-dev.txt
             && python -m pip install tox
+            && export PATH=$PATH:/opt/_internal/cpython-3.8.7/lib/
           CIBW_TEST_COMMAND: tox
 
       - uses: actions/upload-artifact@v1
