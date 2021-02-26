@@ -130,7 +130,7 @@ jobs:
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
           CIBW_BEFORE_ALL: python -m pip install --upgrade pip
             && python -m pip install -r requirements-dev.txt
-            && yum install -y tox
+            && python -m pip install tox
           CIBW_TEST_COMMAND: tox
 
       - uses: actions/upload-artifact@v1
