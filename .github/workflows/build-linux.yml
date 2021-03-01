@@ -124,7 +124,7 @@ jobs:
         env:
           CIBW_BUILD: cp36-* cp37-* cp38-* cp39-*
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
-          CIBW_BEFORE_ALL: python -m pip install --upgrade pip
+          CIBW_BEFORE_BUILD: python -m pip install --upgrade pip
             && python -m pip install tox
           CIBW_TEST_REQUIRES: tox
           CIBW_TEST_COMMAND: cd /project 
