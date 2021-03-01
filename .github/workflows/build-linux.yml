@@ -117,10 +117,6 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --force --recursive --depth=1
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements-dev.txt
-
       - name: Build wheel
         #if: contains(github.ref, 'tags/')
         run: |
