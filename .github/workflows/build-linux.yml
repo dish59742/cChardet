@@ -117,12 +117,53 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --force --recursive --depth=1
 
-      - name: Build wheel
+      - name: Build wheel python3.6
         #if: contains(github.ref, 'tags/')
         run: |
           python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BUILD: cp36-* cp37-* cp38-* cp39-*
+          CIBW_BUILD: "cp36-*"
+          CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+          CIBW_BEFORE_BUILD: python -m pip install --upgrade pip
+            && python -m pip install tox
+          CIBW_TEST_REQUIRES: tox
+          CIBW_TEST_COMMAND: cd /project 
+            && python -m pip install -r requirements-dev.txt 
+            && /opt/python/*/bin/tox -e py
+            
+      - name: Build wheel python3.7
+        #if: contains(github.ref, 'tags/')
+        run: |
+          python -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_BUILD: "cp37-*"
+          CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+          CIBW_BEFORE_BUILD: python -m pip install --upgrade pip
+            && python -m pip install tox
+          CIBW_TEST_REQUIRES: tox
+          CIBW_TEST_COMMAND: cd /project 
+            && python -m pip install -r requirements-dev.txt 
+            && /opt/python/*/bin/tox -e py
+      - name: Build wheel python3.6
+        #if: contains(github.ref, 'tags/')
+        run: |
+          python -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_BUILD: "cp38-*"
+          CIBW_ARCHS_LINUX: ${{ matrix.arch }}
+          CIBW_BEFORE_BUILD: python -m pip install --upgrade pip
+            && python -m pip install tox
+          CIBW_TEST_REQUIRES: tox
+          CIBW_TEST_COMMAND: cd /project 
+            && python -m pip install -r requirements-dev.txt 
+            && /opt/python/*/bin/tox -e py
+        
+      - name: Build wheel python3.9
+        #if: contains(github.ref, 'tags/')
+        run: |
+          python -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_BUILD: "cp39-*"
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
           CIBW_BEFORE_BUILD: python -m pip install --upgrade pip
             && python -m pip install tox
